@@ -1,0 +1,84 @@
+{% extends 'Base/base.html' %}
+{%block start%}
+
+<div class="main-wrap">
+	<div class="outer-wrap">
+		<h1>Sign Up</h1>
+		<hr>
+		<div class="social-login">
+			<a href="#">
+				<img src="images/fb.png" alt="">
+			</a>
+			<a href="#">
+				<img src="images/google.png" alt="">
+			</a>
+			<a href="#">
+				<img src="images/twitter.png" alt="">
+			</a>
+		</div>
+		<p>or use your email</p>
+
+		<form method="post" class="form">
+			{% csrf_token %}
+			<label for="name">Name</label>
+			<br>
+			<input type="text" name="name" placeholder="Full Name" required="">
+			<br>
+			<label for="email">Email</label>
+			<br>
+			<input type="email" name="email" placeholder="Email" required="">
+			<br>
+			<label for="password">Password</label>
+			<br>
+			<input type="password" name="password" id="password" placeholder="Password">
+			<br>
+			<label for="phone">Phone Number</label>
+			<br>
+			<input type="number" name="phone_number" placeholder="Number" required="">
+			<br>
+			<label for="idProof">Valid Id</label>
+			<br>
+			<input type="text" name="id_proof" placeholder="Aadhar No., Pan No. etc."  minlength="12" required="">
+			<br>
+			<label for="address">Address</label>
+			<br>
+			<textarea name="address" id="" cols="30" rows="10" placeholder="Address"></textarea>
+			<br>
+			<button type="submit" class="btn">Register</button>
+			<br>
+			<!-- <input type="checkbox" name="check" id="check"> -->
+			<!-- <span class="rm-me">Remember Me</span> -->
+			<!-- <a href="#" class="fg-pa">Forgot Password?</a> -->
+		</form>
+	</div>
+</div>
+		
+		<!-- <input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form method="post">
+          {% csrf_token %}
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="name" placeholder="Full Name" required="">
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="password" placeholder="Password" required="">
+					<input type="number" name="phone_number" placeholder="Number" required="">
+					<input type="text" name="id_proof" placeholder="Aadhar No., Pan No. etc."  minlength="12" required="">
+          <textarea name="address" id="" cols="30" rows="10" placeholder="Address"></textarea>
+
+					<button type="submit">Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form method="post" , action="/user-login">
+          {% csrf_token %}
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="password" placeholder="Password" required="">
+					<button type="submit">Login</button>
+				</form>
+			</div> -->
+
+{%endblock%}
+

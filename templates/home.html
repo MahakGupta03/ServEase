@@ -1,0 +1,28 @@
+{%extends 'Base/base.html'%}
+{%block start%}
+{%if user.is_authenticated%}
+<h1>Yor are Logged in as {{user.name}}</h1>
+{%else%}
+<h1>Please Login Here <a href="{%url 'user-login'%}">Click</a></h1> 
+
+{%endif%}
+{%endblock%}
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User form</title>
+</head>
+<body>
+    <form action="/register" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html> -->
