@@ -20,7 +20,7 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
 
     list_display = ('name', 'email', 'is_active',
-                    'is_staff', 'is_superuser', 'last_login','phone_number')
+                    'is_staff', 'is_superuser' ,'is_customer','is_service_provider', 'last_login','phone_number')
     list_filter = ('is_active', 'is_staff', 'is_superuser')
     fieldsets = (
         (None, {'fields': ('name', 'email', 'password')}),

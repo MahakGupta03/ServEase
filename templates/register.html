@@ -1,7 +1,76 @@
 {% extends 'Base/base.html' %}
 {%block start%}
 
-<div class="main-wrap">
+<div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+    <form>
+      <div class="text-center mb-3">
+        <p>Sign up with:</p>
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-google"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-twitter"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+          <i class="fab fa-github"></i>
+        </button>
+      </div>
+
+      <p class="text-center">or:</p>
+
+      <!-- Name input -->
+      <div class="form-outline mb-4">
+        <input type="text" id="registerName" class="form-control" />
+        <label class="form-label" for="registerName">Name</label>
+      </div>
+
+      <!-- Username input -->
+      <div class="form-outline mb-4">
+        <input type="text" id="registerUsername" class="form-control" />
+        <label class="form-label" for="registerUsername">Username</label>
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <input type="email" id="registerEmail" class="form-control" />
+        <label class="form-label" for="registerEmail">Email</label>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" id="registerPassword" class="form-control" />
+        <label class="form-label" for="registerPassword">Password</label>
+      </div>
+
+      <!-- Repeat Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" id="registerRepeatPassword" class="form-control" />
+        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="form-check d-flex justify-content-center mb-4">
+        <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+          aria-describedby="registerCheckHelpText" />
+        <label class="form-check-label" for="registerCheck">
+          I have read and agree to the terms
+        </label>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+    </form>
+  </div>
+
+
+
+<!-- <div class="main-wrap">
 	<div class="outer-wrap">
 		<h1>Sign Up</h1>
 		<hr>
@@ -44,14 +113,20 @@
 			<br>
 			<textarea name="address" id="" cols="30" rows="10" placeholder="Address"></textarea>
 			<br>
+			<label for="a-type">Please select user type: </label>
+			<div class="account-type">
+				{% csrf_token %}
+				<input type="radio"  id="customer" name="a-type" value="customer">
+				<label for="customer">Customer</label><br>
+				<input type="radio" id="service-provider" name="a-type" value="service provider">
+				<label for="css">Service Provider</label><br>
+			</div>
 			<button type="submit" class="btn">Register</button>
 			<br>
-			<!-- <input type="checkbox" name="check" id="check"> -->
-			<!-- <span class="rm-me">Remember Me</span> -->
-			<!-- <a href="#" class="fg-pa">Forgot Password?</a> -->
+			
 		</form>
 	</div>
-</div>
+</div> -->
 		
 		<!-- <input type="checkbox" id="chk" aria-hidden="true">
 

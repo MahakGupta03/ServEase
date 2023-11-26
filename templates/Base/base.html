@@ -1,10 +1,9 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title>Slide Navbar</title>
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
@@ -13,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
 </head>
-<body>
+<body> -->
 
 <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -51,7 +50,7 @@
     </div>
   </nav> -->
 
-  <section class="header">
+  <!-- <section class="header">
     <nav>
         <a href="index.html"><img src="image/logo.png" alt=""></a>
         <div class="nav-links">
@@ -78,13 +77,261 @@
         <i class="fa fa-bars"></i>
     </nav>
 
-</section>
+</section> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>ServEase - "The Care Companion"</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static '/css/style.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="{%url 'home'%}">ServEase</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{%url 'home'%}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#features">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+                        {%if user.is_authenticated%}
+                        <li class="nav-item"><a class="nav-link" href="{%url 'user-login'%}">Services</a></li>
+                        {%else%}
+                        <li class="nav-item"><a class="nav-link" href="#service">Services</a></li>
+                        {%endif%}
+                        
+                        <!-- {%if user.is_authenticated%}
+                        <li class="nav-item"><a  class="nav-link" href="{%url 'user-logout'%}">Logout</a></li>
+                        {%else%} -->
+                        <!-- {%url 'user-login'%} -->
+
+              
+                        <li class="nav-item"><a data-toggle="modal" data-target="#login" class="nav-link" href="">Login</a></li>
+                        
+                        <!-- {%endif%} -->
+
+                        {%if user.is_authenticated%}
+                        <!-- <li class="nav-item"><a class="nav-link" href="">{{user.name}}</a></li> -->
+                        <!-- <i class="bi bi-person bg-light"></i> -->
+                        <li class="nav-item dropdown "><a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#!">
+                          <img class=" bg-info rounded-circle "   style="width: 2rem; height: 2rem;" src="{{user.profile_image}}" alt="Card image cap">
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item " href="#!">{{user.name}}</a>
+                            <a class="dropdown-item bg-danger" href="{%url 'user-logout'%}">Logout</a>
+                           
+                          </div>
+                          <!-- <span class="bg-info rounded-circle" >
+                          {{user.profile_image}}
+                          </span> -->
+                          </a></li>
+          
+                        
+                        
+                        {%else%}
+                        <li class="nav-item"><a data-toggle="modal" data-target="#register" class="nav-link" href="{%url 'register'%}">Register</a></li>
+                        {%endif%}
+
+
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Login Modal -->
+        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-12 col-md-8 col-lg-6 col-xl-5 w-100">
+                        
+                          <div class="card-body p-5 text-center">
+                
+                            <h3 class="mb-5">Sign in</h3>
+                            <form method="post" action="{%url 'user-login'%}">
+                              {% csrf_token %}
+                              {%include 'base/alert.html'%}
+                              <div class="form-outline mb-4">
+                                <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" />
+                                <label class="form-label" for="typeEmailX-2">Email</label>
+                              </div>
+                  
+                              <div class="form-outline mb-4">
+                                <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg" />
+                                <label class="form-label" for="typePasswordX-2">Password</label>
+                              </div>
+                  
+                              <!-- Checkbox -->
+                              <!-- <div class="form-check d-flex justify-content-start mb-4">
+                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                                <label class="form-check-label" for="form1Example3"> Remember password </label>
+                              </div> -->
+                              
+                              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                          </form>
+                            <hr class="my-4">
+                
+                            <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+                              type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
+                            <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
+                              type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
+                
+                          </div>
+                        
+                      </div>
+                    </div>
+
+              
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+
+         <!-- Register Modal -->
+         <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-12 col-md-8 col-lg-6 col-xl-5 w-100">
+                        
+                          <div class="card-body p-5 text-center">
+                
+                            <h3 class="mb-5">Register</h3>
+                            <form method="post" enctype="multipart/form-data" action="{%url 'register'%}">
+                              {% csrf_token %}
+                              <div class="form-outline mb-4">
+                                <input type="text" id="typeEmailX-2" name="name" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="typeEmailX-2">Full Name</label>
+                              </div>
+
+                              <div class="form-outline mb-4">
+                                <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="typeEmailX-2">Email</label>
+                              </div>
+                  
+                              <div class="form-outline mb-4">
+                                <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="typePasswordX-2">Password</label>
+                              </div>
+
+                              <div class="form-outline mb-4">
+                                <input type="number" id="typeEmailX-2" name="phone_number" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="typeEmailX-2">Phone Number</label>
+                              </div>
+
+                              <div class="form-outline mb-4">
+                                <input type="text" id="typeEmailX-2" name="id_proof"minlength="12" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="typeEmailX-2">Valid Id</label>
+                              </div>
+
+                              <div class="form-outline mb-4">
+                                <!-- <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" />
+                                <label class="form-label" for="typeEmailX-2">Email</label> -->
+                                <textarea class="form-control form-control-lg" name="address" id=""  required></textarea>
+                                <label class="form-label" for="typeEmailX-2">Address</label>
+                              </div>
+
+                              <div class="form-outline mb-2">
+                                <label for="a-type">Please select user type: </label>
+                                <div class="account-type">
+                                  {% csrf_token %}
+                                  <input type="radio"  id="customer" name="a-type" value="customer">
+                                  <label for="customer">Customer</label><br>
+                                  <input type="radio" id="service-provider" name="a-type" value="service provider">
+                                  <label for="css">Service Provider</label><br>
+                                </div>
+                              </div>
+                              <!-- class="custom-file-label" -->
+                              <div class="custom-file my-2">
+                                <!-- <label  class="form-label"  for="avatar">Choose a profile picture:</label> -->
+                                <input type="file" name="profile" class="btn btn-grey" id="customFile"  required>
+                              </div>
+
+                              <!-- <label for="avatar">Choose a profile picture:</label>
+
+<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" /> -->
+
+
+                  
+                              <!-- Checkbox -->
+                              <!-- <div class="form-check d-flex justify-content-start mb-4">
+                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                                <label class="form-check-label" for="form1Example3"> Remember password </label>
+                              </div> -->
+                              
+                              <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                          </form>
+                            <hr class="my-4">
+                
+                            <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+                              type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
+                            <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
+                              type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
+                
+                          </div>
+                        
+                      </div>
+                    </div>
+
+              
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+
   <div class="main">  
   {%block start%} {%endblock%}
 </div>
 
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+  <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</body>
+</html>
+
  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-</body>
-</html>
+   
+<!-- </body>
+</html> -->
