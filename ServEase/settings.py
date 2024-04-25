@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'Accounts',
     'Profile',
     'Base',
+    'Services',
+    'Auction',
 ]
 
 MIDDLEWARE = [
@@ -87,9 +89,11 @@ WSGI_APPLICATION = 'ServEase.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
+        # 'NAME': 'ServE',
         'NAME': 'Serv',
         'CLIENT': {
             # 'host': 'mongodb+srv://admin:<password>@servease.08hck3e.mongodb.net/'
+            # 'host': 'mongodb+srv://admin:admin@servease.08hck3e.mongodb.net/ServE?retryWrites=true&w=majority',
             'host': 'mongodb+srv://admin:admin@servease.08hck3e.mongodb.net/Serv?retryWrites=true&w=majority',
             # 'username': 'admin',
             # 'password': 'admin',
@@ -143,6 +147,15 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, "static/assets/Profile") 
+# MEDIA_ROOT =  os.path.join(BASE_DIR, "media") 
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'guptamahak1702@gmail.com'
+EMAIL_HOST_PASSWORD = 'mbkotxmhoqgdpgtw'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

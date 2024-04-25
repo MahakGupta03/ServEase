@@ -1,0 +1,40 @@
+{% extends 'Base/base.html' %} {%block start%} {%load static%}
+<!-- <div class="container"> -->
+  <div class="row" style="margin-left: 2px;">
+    <div class="col-10">
+      <div class="row my-2">
+        {%for service in services%} 
+
+        <div class="col-sm-4 my-2" style="width: 18rem;">
+          <div class="card mx-2">
+            <!-- <div class="card-body">
+          <h5 class="card-title">{{user.name}}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div> -->
+
+            <img
+              class="img-fluid"
+              style="height: 18rem"
+              src="static/assets/Profile/{{service.service_image}}"
+              alt="Card image cap"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title ">{{service.service_name}}</h5>
+              <a href="{%url 'service-user' service.uid%}" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        </div>
+         {%endfor%}
+      </div>
+    </div>
+
+    
+    
+
+    </div>
+
+    
+
+<!-- </div> -->
+{%endblock%}

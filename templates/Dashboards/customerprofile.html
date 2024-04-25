@@ -1,0 +1,130 @@
+{% extends 'Base/base.html' %}
+{%load static%}
+{%block css%} 
+<link href="{% static '/css/index.css' %}" rel="stylesheet" />
+<link href="{% static '/css/styles.min.css' %}" rel="stylesheet" />
+{%endblock%}
+
+{%block start%}
+
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed">
+<!-- Sidebar Start -->
+<aside class="left-sidebar">
+  <!-- Sidebar scroll-->
+  <div>
+    <div class="brand-logo d-flex align-items-center justify-content-between">
+      <a href="./ui-card.html" class="text-nowrap logo-img">
+        <img src="{% static  '/assets/Logos/dark-logo.png' %}" width="180" alt="" />
+      </a>
+      <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <i class="ti ti-x fs-8"></i>
+      </div>
+    </div>
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+      <ul id="sidebarnav">
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">Customer Section</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{%url 'user-profile' request.user.name%}" aria-expanded="false">
+            <span>
+              <i class="ti ti-cards"></i>
+            </span>
+            <span class="hide-menu">Profile</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{%url 'user-dashboard' request.user.name%}" aria-expanded="false">
+            <span>
+              <i class="ti ti-layout-dashboard"></i>
+            </span>
+            <span class="hide-menu">Dashboard</span>
+          </a>
+        </li>
+        
+        <!-- <li class="sidebar-item">
+          <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-file-description"></i>
+            </span>
+            <span class="hide-menu">Support Form</span>
+          </a>
+        </li>    -->
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</aside>
+<!--  Sidebar End -->
+<!--  Main wrapper -->
+<div class="body-wrapper">
+
+  <div class="container-fluid">
+    <!--MAIN CONTENT-->
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <h5 class="card-title fw-semibold mb-4">Profile</h5>
+              <div class="card">
+                <img src="{{user.profile_image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Description</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                    the card's content.</p>
+                </div>
+              </div>
+            </div>
+            <!--Bio-->
+            <div class="col-md-4">
+              <h5 class="card-title fw-semibold mb-4">Bio</h5>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Name</h5>
+                  <p class="card-text">{{user.name}}</p>
+                  <h5 class="card-title">Date of Birth</h5>
+                  <p class="card-text">07-09-2003</p>
+                  <h5 class="card-title">Account Type</h5>
+                  {%if user.is_customer%}
+                  <p class="card-text">Customer</p>
+                  {%else%}
+                  <p class="card-text">Service Provider</p>
+                  {%endif%}
+                </div>
+              </div>
+            </div>
+            <!--Bio-->
+
+            <!--Contact-->
+            <div class="col-md-4">
+              <h5 class="card-title fw-semibold mb-4">Contact</h5>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Phone</h5>
+                  <p class="card-text">{{user.phone_number}}</p>
+
+                  <h5 class="card-title">Email</h5>
+                  <p class="card-text">{{user.email}}</p>
+
+                  <!-- <a href="#" class="card-link">Report</a>
+                  <a href="#" class="card-link">Another link</a> -->
+                </div>
+              </div>
+            </div>
+            <!--Contact-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--MAIN CONTENT-->
+</div>
+</div>
+
+{%endblock%}

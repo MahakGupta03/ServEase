@@ -1,30 +1,61 @@
-{% extends 'Base/base.html' %}
-{%block start%}
-<div class="row my-2">
-{%for user in users%}
-{%if not user.is_superuser %}
+{% extends 'Base/base.html' %} {%block start%}
+<!-- <div class="container"> -->
+  <div class="row" style="margin-left: 2px;">
+    <div class="col-10">
+      <div class="row my-2">
+        {%if user.is_authenticated%}
+        {%for user in users%} {%if not user.is_superuser %}
 
-
-    <div class="col-sm-4 my-2" style="width: 18rem;">
-      <div class="card mx-2" >
-        <!-- <div class="card-body">
+        <div class="col-sm-4 my-2" style="width: 18rem;">
+          <div class="card mx-2">
+            <!-- <div class="card-body">
           <h5 class="card-title">{{user.name}}</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div> -->
 
-        <img class="img-fluid" style="height: 18rem;" src="{{user.profile_image}}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{user.name}}</h5>
-            <p class="card-text">Details to be shown.</p>
-            <a href="#" class="btn btn-primary">View Profile</a>
+            <img
+              class="img-fluid"
+              style="height: 18rem"
+              src="{{user.profile_image}}"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{user.name}}</h5>
+              <p class="card-text">Details to be shown.</p>
+              <a href="#" class="btn btn-primary">View Profile</a>
+            </div>
+          </div>
         </div>
+
+        {%endif%} {%endfor%}
+        {%else%}
+        <p>Login Required</p>
+        {%endif%}
       </div>
     </div>
 
+    <div class="col-2">
 
+      <h2 class="mt-4">Prices</h2>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="prices" id="acending" value="acending">
+      <label class="form-check-label" for="acending">
+        Lower to Higher
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="prices" id="decending" value="decending">
+      <label class="form-check-label" for="decending">
+        Higher to Lower
+      </label>
+    </div>
+    
 
-{%endif%}
-{%endfor%}
-</div>
+    </div>
+  </div>
+
+    
+
+<!-- </div> -->
 {%endblock%}

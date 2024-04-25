@@ -1,0 +1,145 @@
+{% extends 'Base/base.html' %}
+
+{%load static%}
+{%block css%} 
+<link href="{% static '/css/index.css' %}" rel="stylesheet" />
+<link href="{% static '/css/styles.min.css' %}" rel="stylesheet" />
+<link href="{% static '/css/bid_form.css' %}" rel="stylesheet" />
+
+{%endblock%}
+{%block start%}
+
+<!-- <div class="container d-flex flex-column justify-content-center mt-2">
+<form method="post" action="{%url 'create_bid'%}">
+    {% csrf_token %}
+    
+        <div class="input-field">
+            <label for="a-type">Please select service:</label>
+            <select required name="service_name" id="role">
+                <option disabled >Select Service</option>
+                <option value="Nursing">Nursing</option>
+                <option value="Home Taker">Home Taker</option>
+            </select>
+        </div>
+        <div 
+            class="input-field" id="descriptionField">
+            <label for="descriptionType">Describe your service</label>
+            <input type="text" name="description" placeholder="Enter your description" id="descriptionTypeInput">
+        </div>
+        <div 
+            class="input-field" id="descriptionField">
+            <label for="descriptionType">End-Date</label>
+            <input type="date" name="end_date" placeholder="Enter your end_date" id="descriptionTypeInput">
+        </div>
+        <div 
+            class="input-field" id="descriptionField">
+            <label for="descriptionType">End-Time</label>
+            <input type="time" name="end_time" placeholder="Enter your time" id="descriptionTypeInput">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+</div> -->
+
+
+
+
+ <!--  Body Wrapper -->
+ <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+ data-sidebar-position="fixed" data-header-position="fixed">
+ 
+ <!--  Sidebar End -->
+ <!--  Main wrapper -->
+ <!-- <div class="body-wrapper"> -->
+   <!--  Header Start -->
+   
+   <!--  Header End -->
+   <div class="container-fluid">
+     <div class="container-fluid together">
+       <div class="formbold-main-wrapper">
+         <div class="formbold-form-wrapper">
+           <form method="post" action="{%url 'create_bid'%}">
+            {% csrf_token %}
+             <div class="flex flex-wrap formbold--mx-3">
+               <div class="w-full sm:w-half formbold-px-3">
+                 <div class="formbold-mb-5">
+                   <label for="Service-Type" class="formbold-form-label pudding">Service Type</label>
+
+                     <select name="Service" class="formbold-form-input ">
+                        <option value="Nursing">Nursing</option>
+                        <option value="Home Taker">Home Taker</option>
+               
+                     </select>
+
+                 </div>
+               </div>
+             </div>
+       
+             <div class="formbold-mb-5">
+               <label for="guest" class="formbold-form-label">
+                 Description
+               </label>
+               <input
+                 type="text"
+                 name="description"
+                 
+                 placeholder="Enter your description"
+                 class="formbold-form-input"
+               />
+             </div>
+       
+
+             <!-- <div 
+            class="input-field" id="descriptionField">
+            <label for="descriptionType">End-Date</label>
+            <input type="date" name="end_date" placeholder="Enter your end_date" id="descriptionTypeInput">
+        </div>
+        <div 
+            class="input-field" id="descriptionField">
+            <label for="descriptionType">End-Time</label>
+            <input type="time" name="end_time" placeholder="Enter your time" id="descriptionTypeInput">
+        </div> -->
+             <div class="flex flex-wrap formbold--mx-3">
+               <div class="w-full sm:w-half formbold-px-3">
+                 <div class="formbold-mb-5 w-full">
+                   <label for="date" class="formbold-form-label"> End Date </label>
+                   <input
+                     type="date"
+                     name="end_date"
+                     id="date"
+                     class="formbold-form-input"
+                   />
+                 </div>
+               </div>
+               <div class="w-full sm:w-half formbold-px-3">
+                 <div class="formbold-mb-5">
+                   <label for="time" class="formbold-form-label"> End Time </label>
+                   <input
+                     type="time"
+                     name="end_time"
+                     id="time"
+                     class="formbold-form-input"
+                   />
+                 </div>
+               </div>
+             </div>
+             <div>
+               <button class="formbold-btn">Submit</button>
+             </div>
+           </form>
+         </div>
+       </div>
+
+     </div>
+   </div>
+ <!-- </div> -->
+</div>
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/sidebarmenu.js"></script>
+<script src="../assets/js/app.min.js"></script>
+<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+  {%endblock%}
+

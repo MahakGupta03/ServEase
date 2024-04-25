@@ -1,13 +1,13 @@
 {%extends 'Base/base.html'%}
 {%block start%}
-{%include 'base/alert.html'%}
+<!-- {%include 'base/alert.html'%} -->
 {%load static%}
         <!-- Header-->
 
         <!-- style="background-image:url({% static  '/assets/Background/bgs.jpg' %});  background-size: cover; background-repeat: no-repeat;
         " -->
         <!-- filter: contrast(100%); -->
-        <header class="py-5 " style="background-image:url({% static  '/assets/Background/bg3.jpg' %});   background-size: cover; background-repeat: no-repeat;
+        <header class="py-5 " style="background-image:url({% static  '/assets/Background/bg32.jpg' %});   background-size: cover; background-repeat: no-repeat ;filter: contrast(140%);
         " >  
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
@@ -15,7 +15,7 @@
                         <div class="text-center my-5">
                             <h1 class="display-3 fw-bolder text-white mb-2">ServEase : The Care Companion</h1>
                             <!-- <h1 class="display-6 fw-bolder text-white mb-2">The Care Companion</h1> -->
-                            <p class="lead text-white-50 mb-4">Revolutionizing local services, connects users with trusted professionals for a seamless, personalized care experience.</p>
+                            <p class="lead text-white mb-4">Revolutionizing local services, connects users with trusted professionals for a seamless, personalized care experience.</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
 
                                 {%if user.is_authenticated%}

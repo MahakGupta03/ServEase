@@ -1,0 +1,44 @@
+{% extends 'Base/base.html' %} {%block start%}
+<!-- <div class="container"> -->
+  <div class="row" style="margin-left: 2px;">
+    <div class="col-10">
+      <div class="row my-2">
+        {%if user.is_authenticated%}
+        {%for user in service_users%} {%if not user.is_superuser %}
+
+        <div class="col-sm-4 my-2" style="width: 18rem;">
+          <div class="card mx-2">
+            <!-- <div class="card-body">
+          <h5 class="card-title">{{user.name}}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div> -->
+
+            <img
+              class="img-fluid"
+              style="height: 18rem"
+              src="{{user.profile_image}}"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{user.name}}</h5>
+              <p class="card-text">Details to be shown.</p>
+              <a href="#" class="btn btn-primary">View Profile</a>
+            </div>
+          </div>
+        </div>
+
+        {%endif%} {%endfor%}
+        {%else%}
+        <p>Login Required</p>
+        {%endif%}
+      </div>
+    </div>
+
+    
+  </div>
+
+    
+
+<!-- </div> -->
+{%endblock%}

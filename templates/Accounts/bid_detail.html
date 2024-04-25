@@ -1,0 +1,119 @@
+{% extends 'Base/base.html' %}
+{%load static%}
+
+{%block css%} 
+<link href="{% static '/css/index.css' %}" rel="stylesheet" />
+<link href="{% static '/css/styles.min.css' %}" rel="stylesheet" />
+<link href="{% static '/css/bid.css' %}" rel="stylesheet" />
+{%endblock%}
+
+{%block start%}
+<!-- old code will come here -->
+
+
+
+<!-- new code starts here -->
+<div class="container" style=" box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);  margin: 15vh; padding:6vh;">
+  <div class="content">
+    <div class="left-side">
+      <div class="address details">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="topic">Customer Details</div>
+        <div class="text-one">Name: {{bid.user.name}}</div>
+        <div class="text-two">Address: {{bid.user.address}}, {{bid.user.city}}, {{bid.user.state}}</div>
+        <div class="text-one">{{bid.user.phone_number}}</div>
+        <div class="text-two">{{bid.user.email}}</div>
+      </div>
+      <div class="phone details">
+        <i class="fas fa-phone-alt"></i>
+        <div class="topic">Bid Details</div>
+        <div class="text-one">Service: {{bid.service_name}}</div>
+        <div class="text-two">Description: {{bid.description}}</div>
+      </div>
+      
+    </div>
+    <div class="right-side">
+    {%if bid.is_closed%}
+    
+      <div class="topic-text">Status: Closed</div>
+      <div class="container p-2" ><h1>The Bid is closed</h1></div>
+      
+    <!-- <form action="#">
+      <div class="input-box">
+        <input type="number" placeholder="Enter your bidding amount">
+
+        
+      </div>
+      
+      <div class="input-box">
+        <label for="message" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Message</label>
+          <textarea rows="5" name="message" id="message" placeholder="add note" class="block mb-2 text-sm text-gray-600 dark:text-gray-400 ""></textarea>
+      </div class="input-box">
+      
+      <div class="button">
+        <input type="button" value="Send Now" >
+      </div>
+    </form> -->
+  
+    {%else%}
+      <div class="topic-text">Status: Currently Running</div>
+      <p>Enter Amount</p>
+    <form action="#">
+      <div class="input-box">
+        <input type="number" placeholder="Enter your bidding amount">
+
+        
+      </div>
+      
+      <div class="input-box">
+        <label for="message" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Message</label>
+          <textarea rows="5" name="message" id="message" placeholder="add note" class="block mb-2 text-sm text-gray-600 dark:text-gray-400 ""></textarea>
+      </div class="input-box">
+      
+      <div class="button">
+        <input type="button" value="Send Now" >
+      </div>
+    </form>
+
+  {%endif%}
+
+  {%if price_uploaded and user %}
+  <h1 class="text-success">You have uploaded your price</h1>
+  {%endif%}
+</div>
+  </div>
+</div>
+
+
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jan 5, 2030 15:37:25").getTime();
+    
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+    
+      // Get today's date and time
+      var now = new Date().getTime();
+    
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+    
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      // Display the result in the element with id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+    </script>
+{%endblock%}
+

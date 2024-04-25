@@ -1,0 +1,155 @@
+{% extends 'Base/base.html' %}
+{%load static%}
+
+{%block css%} 
+<link href="{% static '/css/index.css' %}" rel="stylesheet" />
+<link href="{% static '/css/styles.min.css' %}" rel="stylesheet" />
+{%endblock%}
+
+{%block start%}
+<!-- {%include 'base/alert.html'%} -->
+<div class="container">
+	<header>Registration</header>
+
+	<form method="post" enctype="multipart/form-data" action="{%url 'register'%}">
+		{% csrf_token %}
+		<div class="form first">
+			<div class="details personal">
+				<span class="title">Personal Details</span>
+
+				<div class="input-field">
+						<label for="a-type">Please select user type:</label>
+						<select required name="a-type" id="role" onchange="toggleOccupationType()">
+							<option disabled >Select role</option>
+                            <option value="customer">Customer</option>
+                            <option value="service provider">Service Provider</option>
+						</select>
+					</div>
+				
+
+				<div class="fields">
+					<div class="input-field">
+						<label>Full Name</label>
+						<input type="text" name="name" placeholder="Enter your name" required>
+					</div>
+
+					
+					<div class="input-field">
+						<label>Email</label>
+						<input type="email" name="email" placeholder="Enter your email" required>
+					</div>
+
+					<div class="input-field">
+						<label>Password</label>
+						<input type="password" name="password" placeholder="Enter Password" required>
+					</div>
+					
+					<div class="input-field">
+						<label>Mobile Number</label>
+						<input type="text" name="phone_number" placeholder="Enter mobile number" required>
+					</div>
+
+					
+
+
+					<div class="input-field" id="service-type" style="display:none;">
+						<label for="category">Category</label>
+						<select  name="service" id="category"  >
+							<option disabled selected>Select role</option>
+							{%for service in services%}
+								<option value="{{service.service_name}}">{{service.service_name}}</option>
+							{%endfor%}
+						</select>
+					</div>
+
+					
+
+					<div class="input-field">
+						<label  class="form-label"  for="avatar">Choose a profile picture:</label>
+						<input type="file" name="profile" class="btn btn-grey" id="customFile"  required style="
+						border: none;">
+					  </div>
+
+					  <!-- <div class="input-field" id="descriptionField" style="display:none;">
+						<label>Description</label>
+						<textarea name="description" placeholder="Enter your description"></textarea>
+					</div> -->
+					
+					<div 
+					class="input-field" id="descriptionField" style="display:none; width: 100%;">
+						<label for="descriptionType">Describe your service</label>
+						<input type="text" name="description" placeholder="Enter your description" id="descriptionTypeInput">
+					  </div>
+
+				</div>
+			</div>
+
+			<div class="details ID">
+				<span class="title">Identity Details</span>
+
+				<div class="fields">
+					<div class="input-field">
+						<label>ID Type</label>
+						<input type="text" name="id_proof_type" placeholder="Enter ID type" required>
+					</div>
+
+					<div class="input-field">
+						<label>ID Number</label>
+						<input type="text" name="id_proof_number" placeholder="Enter ID number" required>
+					</div>
+
+				  
+				</div>
+
+			</div>
+			
+			<div class="details address">
+				<span class="title">Address Details</span>
+				<div class="fields">
+				<div class="input-field">
+					<label>Address</label>
+					<textarea type="text" name="address" placeholder="Enter Complete Address" required></textarea>
+				</div>
+					
+
+					<div class="input-field">
+						<label>State</label>
+						<input type="text" name="state" placeholder="Enter your state" required>
+					</div>
+
+					<div class="input-field">
+						<label>City</label>
+						<input type="text" name="city" placeholder="Enter your city" required>
+					</div>
+
+					<div class="input-field">
+						<label>District</label>
+						<input type="text" name="district" placeholder="Enter your district" required>
+					</div>
+
+					<!-- <div class="input-field">
+						<label>Block Number</label>
+						<input type="number" placeholder="Enter block number" required>
+					</div>
+
+					<div class="input-field">
+						<label>Ward Number</label>
+						<input type="number" placeholder="Enter ward number" required>
+					</div> -->
+				</div>
+				</div>
+			</div>
+			
+			<button class="nextBtn" type="submit">
+				<span class="btnText">Submit</span>
+				<i class="uil uil-navigator"></i>
+			</button>
+			
+		</div>
+	</form>
+</div>
+
+
+
+{%endblock%}
+
