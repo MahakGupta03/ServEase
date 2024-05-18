@@ -71,11 +71,10 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <div class="col-md-4">
               <h5 class="card-title fw-semibold mb-4">Profile</h5>
               <div class="card">
-                <img src="{{user.profile_image}}" class="card-img-top" alt="...">
+                <img src="{{bid_user.user.profile_image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Description</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
+                  <p class="card-text">{{bid_user.user.description}}</p>
                 </div>
               </div>
             </div>
@@ -85,9 +84,9 @@ data-sidebar-position="fixed" data-header-position="fixed">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Name</h5>
-                  <p class="card-text">{{user.name}}</p>
+                  <p class="card-text">{{bid_user.user.name}}</p>
                   <h5 class="card-title">Date of Birth</h5>
-                  <p class="card-text">{{user.dob}}</p>
+                  <p class="card-text">{{bid_user.user.dob}}</p>
                   <h5 class="card-title">Account Type</h5>
                   {%if user.is_customer%}
                   <p class="card-text">Customer</p>
@@ -105,10 +104,10 @@ data-sidebar-position="fixed" data-header-position="fixed">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Phone</h5>
-                  <p class="card-text">{{user.phone_number}}</p>
+                  <p class="card-text">{{bid_user.user.phone_number}}</p>
 
                   <h5 class="card-title">Email</h5>
-                  <p class="card-text">{{user.email}}</p>
+                  <p class="card-text">{{bid_user.user.email}}</p>
 
                   <!-- <a href="#" class="card-link">Report</a>
                   <a href="#" class="card-link">Another link</a> -->

@@ -11,6 +11,7 @@ class CustomUser(BaseModel,AbstractUser):
     name = models.CharField(max_length=100)
     email = models.EmailField( unique=True)
     phone_number = models.CharField(max_length=100)
+    dob = models.DateField()
     description = models.CharField(max_length=500, default=None)
     id_proof_type = models.CharField(max_length=50,default=None)
     id_proof_number = models.CharField(max_length=12,default=None)

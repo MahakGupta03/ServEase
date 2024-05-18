@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
+
+from Services.models import Services
 from .models import *
 
 from django.db.models.signals import pre_save,post_save
@@ -12,6 +14,8 @@ from django.contrib import messages
 
 def create_bid(request):
     data = Auction.objects.all()
+    services = Services.objects.all()
+    context = {'data' : data,'services' : services}
     if request.method=='POST':
         user = request.user
         service_name = request.POST.get("service_name")
@@ -21,8 +25,8 @@ def create_bid(request):
 
         bid = Auction.objects.create(user = user, service_name = service_name, description=description, end_date=end_date, end_time=end_time, is_closed=False)
         bid.save()
-        
-        return render(request, 'Dashboards/customerprofile.html', {'data' : data})
+        messages.success(request, "Bid is created successfully")
+        return render(request, 'Dashboards/customerprofile.html', context=context)
     else:
 
         for d in data:
@@ -33,7 +37,7 @@ def create_bid(request):
             # print(datetime.now().strftime('%H:%M'))
             # print(d.end_time)
             print(type(d.end_time.strftime('%H:%M')))
-        return render(request, 'Accounts/bid_form.html')
+        return render(request, 'Accounts/bid_form.html', context=context)
     
 
 def update_bid(request, b_id):  
@@ -46,7 +50,7 @@ def update_bid(request, b_id):
             user = None
         
         context = {'price_uploaded' : price_uploaded, 'bid': bid, 'user': user}
-        if bid.end_date <= datetime.now().date() and bid.end_time < datetime.now().time():
+        if bid.end_date <datetime.now().date() or (bid.end_date <= datetime.now().date() and bid.end_time < datetime.now().time()):
             bid.is_closed = True
             bid.save()  
             # context['bid'] = bid
@@ -62,14 +66,21 @@ def upload_price(request, bid_id, user_id):
         price = request.POST.get("price")
         user_bid = AuctionPrice.objects.create(bid = bid, user = user, price = price)
         user_bid.save()
+        messages.success(request, "You have successfully uploaded your price.")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         # return HttpResponseRedirect(request.path_info)
         # return HttpResponse("done")
+
+def email_confirmation(request, email):
+    # return redirect('user-dashboard' , name = request.user.name)
+    user = CustomUser.objects.get(email = email)
+    return render(request, 'Dashboards/confirmation.html',{'user': user})
 
 def send_confirmation_mail(request, email):
     subject = "Congratulations"
     message = f"You are confirmed for the job by {request.user.name}"
     email_from =  settings.EMAIL_HOST_USER
-    send_mail(subject, message, email_from, ["yashhguptaa.917@gmail.com"])
+    send_mail(subject, message, email_from, [email])
     messages.success(request, "Mail has been sent successfully")
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return redirect('user-dashboard' , name = request.user.name)

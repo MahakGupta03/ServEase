@@ -147,10 +147,11 @@ data-sidebar-position="fixed" data-header-position="fixed">
                    </thead>
                    <tbody>
                     {%for price in auction_prices%}
+                    
                      <tr>
                        <!-- <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td> -->
                        <td class="border-bottom-0">
-                           <h6 class="fw-semibold mb-1">{{price.user.name}}</h6>
+                        <a href="{%url 'bid-user-profile' price.user.uid%}"><h6 class="fw-semibold mb-1">{{price.user.name}}</h6></a>
                                                     
                        </td>
                       
@@ -159,7 +160,10 @@ data-sidebar-position="fixed" data-header-position="fixed">
                        </td>
                        <td class="border-bottom-0">
                          <!-- <h6 class="fw-semibold mb-0 fs-4">{{price.price}}</h6> -->
-                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Approve</button>
+                         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Approve</button> -->
+                         <!-- <a href="{%url 'send-mail' price.user.email%}"><button type="button" class="btn btn-primary">Approve</button></a> -->
+                         <a href="{%url 'email-confirmation' price.user%}"><button type="button" class="btn btn-primary">Approve</button></a>
+
                        </td>
                      </tr> 
 
@@ -175,6 +179,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                                       </button>
                                     </div>
                                     <div class="modal-body">
+                                      <p>{{price.user.email}}</p>
                                       <p>Are you sure you want to approve the request.</p> 
                                       <p>An email will be sent.</p>
                                     </div>
@@ -240,9 +245,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
          </div>
        </div>
       
-       <div class="py-6 px-6 text-center">
-         <p class="mb-0 fs-4">Design and Developed by Team Servease</p>
-       </div>
+       
      </div>
    </div>
  </div>

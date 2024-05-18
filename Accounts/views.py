@@ -32,6 +32,7 @@ def register(request):
             password = request.POST.get("password")
             phone_number = request.POST.get("phone_number")
             email = request.POST.get("email")
+            dob = request.POST.get("dob")
             description = request.POST.get("description")
             id_proof_type = request.POST.get("id_proof_type")
             id_proof_number = request.POST.get("id_proof_number")
@@ -56,13 +57,17 @@ def register(request):
             fss = FileSystemStorage()
             file = fss.save(profile.name, profile)
             profile_url = fss.url(file)
+
+            if User.objects.filter(email=email).exists():
+                messages.warning(request, "User already exists..")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             
             # user = User.objects.create(username=username, password=password, first_name=first_name, last_name=last_name)
             # breakpoint()
             # user = User.objects.create_user(name = name, password=password, phone_number=phone_number, email=email, is_customer = is_customer, is_service_provider=is_service_provider)
             # user = User.objects.create_user(name = name, password=password, phone_number=phone_number, email=email, description=description, id_proof_type = id_proof_type ,id_proof_number=id_proof_number, address=address, 
             #                                 state=state, city=city, district = district , profile_image=profile_url , service_name=service_name , service_type = service_type)
-            user = User.objects.create_user(name = name, password=password, phone_number=phone_number, email=email, description=description, id_proof_type = id_proof_type ,id_proof_number=id_proof_number, address=address, 
+            user = User.objects.create_user(name = name, password=password, phone_number=phone_number, email=email,dob=dob, description=description, id_proof_type = id_proof_type ,id_proof_number=id_proof_number, address=address, 
                                             state=state, city=city, district = district , profile_image=profile_url, service_name=service_name)
             print(account_type)
             # user = User.objects.create_user(name = name, password=password, phone_number=phone_number, email=email, id_proof_type = id_proof_type ,id_proof_number=id_proof_number, address=address, 
@@ -77,14 +82,14 @@ def register(request):
                 # user.service_type = Services.objects.get(service_name=service_name)
             print("414")
             user.save()
-            # return HttpResponse("done ")
+            
             messages.success(request, "User Registered Successfully..")
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            return render(request, 'login.html')
+            return redirect('home')
+            # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            # return render(request, 'login.html')
         
-        
-
         return render(request,"Accounts/register.html",context=context)
+        # return HttpResponse("done")
 
             # fm = CustomUserForm(request.POST)
             
@@ -188,3 +193,8 @@ def user_logout(request):
     if request.user:
         logout(request)
     return redirect('/')
+
+def bid_user_profile(request,b_user):
+    bid_user = AuctionPrice.objects.filter(user = b_user).first
+
+    return render(request, 'Dashboards/bidcustomerprofile.html',{'bid_user':bid_user})

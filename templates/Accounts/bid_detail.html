@@ -56,30 +56,37 @@
     </form> -->
   
     {%else%}
+    
       <div class="topic-text">Status: Currently Running</div>
-      <p>Enter Amount</p>
-    <form action="#">
+      {%if price_uploaded and user %}
+      <h1 class="text-success">You have uploaded your price</h1>
+      {%else%}
+      <form method="post" action="{%url 'upload_price' bid.uid request.user.uid %}">
+        {% csrf_token %}
+        <p>Enter Amount</p>
       <div class="input-box">
-        <input type="number" placeholder="Enter your bidding amount">
+        <input type="number" name="price" placeholder="Enter your bidding amount">
 
         
       </div>
       
-      <div class="input-box">
+      <div class="input-box my-4">
         <label for="message" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Message</label>
           <textarea rows="5" name="message" id="message" placeholder="add note" class="block mb-2 text-sm text-gray-600 dark:text-gray-400 ""></textarea>
       </div class="input-box">
       
-      <div class="button">
-        <input type="button" value="Send Now" >
-      </div>
+      
+        <button class="button" type="submit" value="" >Send Now</button>
+  
     </form>
+    
 
   {%endif%}
+  {%endif%}
 
-  {%if price_uploaded and user %}
+  <!-- {%if price_uploaded and user %}
   <h1 class="text-success">You have uploaded your price</h1>
-  {%endif%}
+  {%endif%} -->
 </div>
   </div>
 </div>

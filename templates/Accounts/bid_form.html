@@ -47,7 +47,7 @@
 
  <!--  Body Wrapper -->
  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
- data-sidebar-position="fixed" data-header-position="fixed">
+ data-sidebar-position="fixed" data-header-position="fixed" style="min-height: 74vh;">
  
  <!--  Sidebar End -->
  <!--  Main wrapper -->
@@ -66,9 +66,14 @@
                  <div class="formbold-mb-5">
                    <label for="Service-Type" class="formbold-form-label pudding">Service Type</label>
 
-                     <select name="Service" class="formbold-form-input ">
-                        <option value="Nursing">Nursing</option>
-                        <option value="Home Taker">Home Taker</option>
+                     <select name="service_name" class="formbold-form-input ">
+                        <!-- <option value="Nursing">Nursing</option>
+                        <option value="Home Taker">Home Taker</option> -->
+
+                        <option disabled selected>Select role</option>
+                        {%for service in services%}
+                          <option value="{{service.service_name}}">{{service.service_name}}</option>
+                        {%endfor%}
                
                      </select>
 
