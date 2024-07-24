@@ -30,7 +30,7 @@
 				<div class="fields">
 					<div class="input-field">
 						<label>Full Name</label>
-						<input type="text" name="name" placeholder="Enter your name" required>
+						<input type="text"  id="usernameInput" name="name" placeholder="Enter your name" required>
 					</div>
 
 					
@@ -46,7 +46,7 @@
 					
 					<div class="input-field">
 						<label>Mobile Number</label>
-						<input type="text" name="phone_number" placeholder="Enter mobile number" required>
+						<input type="number" name="phone_number" placeholder="Enter mobile number" required>
 					</div>
 					<div class="input-field">
 						<label for="birthday">Date of birth:</label>
@@ -99,7 +99,7 @@
 
 					<div class="input-field">
 						<label>ID Number</label>
-						<input type="text" name="id_proof_number" placeholder="Enter ID number" required>
+						<input type="number" minlength="12"  name="id_proof_number" placeholder="Enter ID number" required>
 					</div>
 
 				  
@@ -152,6 +152,18 @@
 		</div>
 	</form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#usernameInput").keypress(function(e){
+        if(e.which >= 48 && e.which <= 57)  // ASCII values for 0-9
+        {
+            return false;
+        }
+    });
+});
+</script>
 
 
 

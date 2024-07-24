@@ -23,7 +23,8 @@
             <div class="card-body">
               <h5 class="card-title">{{user.name}}</h5>
               <p class="card-text">Details to be shown.</p>
-              <a href="#" class="btn btn-primary">View Profile</a>
+              <!-- <a href="{%url 'user-profile' user.name%}" class="btn btn-primary">View Profile</a> -->
+              <a href="{%url 'bid-user-profile' user.uid%}" class="btn btn-primary">View Profile</a>
             </div>
           </div>
         </div>

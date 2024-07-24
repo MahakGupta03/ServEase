@@ -29,6 +29,7 @@ def register(request):
     try:
         if request.method == 'POST':
             name = request.POST.get("name")
+            print(type(name))
             password = request.POST.get("password")
             phone_number = request.POST.get("phone_number")
             email = request.POST.get("email")
@@ -57,6 +58,18 @@ def register(request):
             fss = FileSystemStorage()
             file = fss.save(profile.name, profile)
             profile_url = fss.url(file)
+
+            if(email.endswith('@gmail.com') == False):
+                messages.warning(request, "Enter valid email..")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            
+            if(len(id_proof_number) >12 or len(id_proof_number) < 12):
+                messages.warning(request, "Enter valid id proof number..")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            
+            if(len(phone_number) >10 or len(phone_number) < 10):
+                messages.warning(request, "Enter Phone number")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
             if User.objects.filter(email=email).exists():
                 messages.warning(request, "User already exists..")
