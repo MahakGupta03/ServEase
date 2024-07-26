@@ -172,7 +172,7 @@
                             <h3 class="mb-5">Sign in</h3>
                             <form method="post" action="{%url 'user-login'%}">
                               {% csrf_token %}
-                              {%include 'base/alert.html'%}
+                              {%include 'Base/alert.html'%}
                               <div class="form-outline mb-4">
                                 <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg" />
                                 <label class="form-label" for="typeEmailX-2">Email</label>
