@@ -9,6 +9,7 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.utils import timezone
 
 # Create your views here.
 
@@ -39,9 +40,15 @@ def create_bid(request):
             print(type(d.end_time.strftime('%H:%M')))
         return render(request, 'Accounts/bid_form.html', context=context)
     
-
+import pytz
 def update_bid(request, b_id):  
     if request.user.is_authenticated:
+        utc_now = timezone.now()
+        
+        # Convert UTC time to Indian Standard Time (IST)
+        ist = pytz.timezone('Asia/Kolkata')
+        ist_now = utc_now.astimezone(ist)
+       
         bid = Auction.objects.get(uid = b_id)
         price_uploaded = AuctionPrice.objects.filter(bid = bid)
         try:
@@ -50,7 +57,8 @@ def update_bid(request, b_id):
             user = None
         
         context = {'price_uploaded' : price_uploaded, 'bid': bid, 'user': user}
-        if bid.end_date <datetime.now().date() or (bid.end_date <= datetime.now().date() and bid.end_time < datetime.now().time()):
+        # if bid.end_date <datetime.now().date() or (bid.end_date <= datetime.now().date() and bid.end_time < datetime.now().time()):
+        if bid.end_date < ist_now.date() or (bid.end_date <= ist_now.date() and bid.end_time < ist_now.time()):
             bid.is_closed = True
             bid.save()  
             # context['bid'] = bid

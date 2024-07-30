@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model,authenticate,login,logout
 from django.urls import reverse
-
+from Auction.views import update_bid
 from Auction.models import *
 from Services.models import Services
 from .models import CustomUser
@@ -196,6 +196,7 @@ def user_profile(request,name):
 def user_dashboard(request,name):
     if request.user.is_customer:
         auction_prices = AuctionPrice.objects.all().order_by('price')
+        # update_bid(request, auction_prices[0].bid.uid)
         print(auction_prices[0].price)
         return render(request, 'Dashboards/customerdashboard.html', {'auction_prices' : auction_prices})
     elif request.user.is_service_provider:
