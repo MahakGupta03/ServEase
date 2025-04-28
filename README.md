@@ -1,7 +1,4 @@
 # ServEase - An Online Marketplace for Local Services
-## Project Overview
-Flatmate Fight Resolver is a Spring Boot-based application designed to manage disputes among flatmates efficiently. The system allows users to authenticate, register complaints, vote on resolutions, track progress, and view leaderboards.
-
 ## Features
 - **Service Provider Registration:** Providers can register using a unique ID (e.g., Aadhaar card) to verify their authenticity.
 - **Service Categorization:** Providers list their services under specific domains for easy navigation.
